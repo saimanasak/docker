@@ -1,12 +1,12 @@
 #### Image
-> It is a file that contains all the necessary dependencies and configurations which are required to run an application.
+- It is a file that contains all the necessary dependencies and configurations which are required to run an application.
 
 #### Container
 - It is a running instance of an image.
 - A Universally Unique Identifier (UUID) when a container is created.
 - By default, docker assigns a randomnly generated name containing of 2 words and combined by an underscore.
 - We can also give a desired name to our container by  
-    ```
+    ```text
     --name=some_desired_container_name
     ```
 
