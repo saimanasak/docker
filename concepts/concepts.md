@@ -6,6 +6,7 @@
 - A Universally Unique Identifier (UUID) when a container is created.
 - By default, docker assigns a randomnly generated name containing of 2 words and combined by an underscore.
 - We can also give a desired name to our container by  
+
     ```text
     --name=some_desired_container_name
     ```
@@ -21,6 +22,7 @@
 - It manages the docker containers and is responsible for creating, running, and managing the docker containers on a host system.
 - When we run a "docker run" command then docker CLI sends a command to the daemon and which then executes it.
 - We can find the config file of docker daemon in the below path:  
+
     ```
     /etc/docker/daemon.json
     ```
