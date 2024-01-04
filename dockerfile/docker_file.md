@@ -3,10 +3,10 @@
 - To build an image we need to have an dockerfile.
 - Docker images are the basis for the docker containers.
 - Format:
-        ```
-        #comment
-        INSTRUCTION arguments
-        ```
+```
+#comment
+INSTRUCTION arguments
+```
     - Instruction isn't case-sensitive.
 - A dockerfile must begin with a **FROM** instruction (if you are using any parent image i.e., FROM specifies the base image from which we want to start creating the image from)
 
