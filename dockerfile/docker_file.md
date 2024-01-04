@@ -47,3 +47,11 @@ INSTRUCTION arguments
 
     docker image build --build-arg name=stranger
     ```
+
+#### 3. CMD  
+- It is a default command to run when a container is started from the built image.
+- Can be overridden when running a container.
+- Should be only one CMD instruction. If there are multiple, the last of the file is considered.
+- Syntax:  
+    `CMD ["executable", "param1", "param2"...] #exec form`
+    `CMD command param1 param2 ... #shell form`
