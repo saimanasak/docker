@@ -1,4 +1,4 @@
-#### Image
+#### Image  
 - It is a file that contains all the necessary dependencies and configurations which are required to run an application.
 
 #### Container
@@ -6,12 +6,11 @@
 - A Universally Unique Identifier (UUID) when a container is created.
 - By default, docker assigns a randomnly generated name containing of 2 words and combined by an underscore.
 - We can also give a desired name to our container by  
-
-    ```text
+    `
     --name=some_desired_container_name
-    ```
+    `
 
-#### Port Binding
+#### Port Binding  
 - By default, containers can communicate with the outside world but the outside world cannot communicate with the containers.
 - So for this , we have a process called port binding.
 - This maps a host port to the container port.
@@ -22,10 +21,9 @@
 - It manages the docker containers and is responsible for creating, running, and managing the docker containers on a host system.
 - When we run a "docker run" command then docker CLI sends a command to the daemon and which then executes it.
 - We can find the config file of docker daemon in the below path:  
-
-    ```
+    `
     /etc/docker/daemon.json
-    ```
+    `
 
 #### Modes
 - We have two modes: Attached/Foreground/Interactive and Detached modes.
@@ -52,8 +50,8 @@
 #### 'it' flags
 - Every process that is created in the linux environment has three file descriptors: stdin, stdout, and stderr.
 - 'it flag'
-    - **--i** is an interactive flag that keeps stdin open even if it's not attached.
-    - **--t** is a tty flag that allocates a pesudo-TTY (which means it gives us a terminal to work on)
+    - **-i** is an interactive flag that keeps stdin open even if it's not attached (if not mentioned, we cannot give any input as we desired)
+    - **-t** is a tty flag that allocates a pesudo-TTY (which means it gives us a terminal to work on)
 
 #### Restart Policies
 - By default, containers will not start when they exit or when daemon is restarted.
