@@ -5,6 +5,8 @@ version: "3"
 services:
   chrome:
     image: selenium/node-chrome:4.16.1-20231219
+    deploy:
+      replicas: 2
     shm_size: 2gb
     depends_on:
       - selenium-hub
