@@ -195,6 +195,36 @@ INSTRUCTION arguments
     ```  
 - This impacts the subsequent **RUN**, **CMD**, and **ENTRYPOINT** instructions i.e., all these 3 will be using the shell that is specified by SHELL instruction.
 
+#### 15. STOPSIGNAL  
+- Used to set the system call signal that will be sent to the container to stop it gracefully.
+- Syntax:  
+    `STOPSIGNAL signal`  
+- i.e., when we run a 'docker conatiner stop' command, then the Docker will send the signal to the primary process that is running on the container, allowing it to perform any cleanup or any other shutdown procedures before stopping.
+- Can be overridden by using **--stop-signal** flag along with the docker run and create commands.
+
+#### 16. USER
+- Set the user that will be used to run the commands.
+- Syntax:  
+    `USER <user>[:<group>]`  
+    `USER <UID>[:<GID>]`  
+- i.e., this allows us to run the commands specified in the image with a specified user.
+- By default, it runs as root user.
+
+#### 17. VOLUME 
+- Used to create a mount point and declare that the specified directories within the container should be externally mounted as volumes.
+- Syntax:  
+    `VOLUME ["/data"]`  
+- Volume starts as an empty directory.
+- Even if the data is specified in the dockerfile, during the build time the specified data will be discarded.
+- Example:  
+    `docker run -v /localhost/path:/web image_name`  
+    Here, this commands mount's the host machine's '/localhost/path' directory to the '/web' directory inside the container as a volume.
+
+#### 18. WORKDIR  
+- Used to set the working directory for any RUN, CMD, ENTRYPOINT, COPY, and ADD instructions that follow it in the dockerfile.
+- Defines the default directory where the specified commands to be executed.
+- Syntax:  
+    `WORKDIR /path/of/directory`  
 
 
 
