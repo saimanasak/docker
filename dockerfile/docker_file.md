@@ -152,6 +152,50 @@ INSTRUCTION arguments
     - **1**: failed/unhealthy  
     - **2**: reserved/encountered an error      
 
+#### 10. LABEL  
+- Adds metadata to an image.
+- key-value pairs.
+- Can be used to provide info about an image.
+- Syntax:  
+    `LABEL <key1>=<value1> <key2>=<value2>...`   
+- Can have multiple labels and can also be defined in a single line.  
+- Labels can be inherited from the specified base image (overrides with the most recently applied value)
+
+#### 11. MAINTAINER  
+- deprecated
+- supports older versions of Docker.
+- bit similar to LABEL instruction.
+
+#### 12. ONBUILD  
+- Used to add instructions that will be executed during a later build stage i.e, when the our already image is used as base image for another image.
+- Syntax:  
+    `ONBUILD INSTRUCTION`  
+- Can have multiple ONBUILD instructions.
+
+#### 13. RUN  
+- Used to execute commands during the build process.
+- Syntax:  
+    `RUN <command>`  
+
+#### 14. SHELL
+- USed to set the default shell that will be used during for RUN instructions.
+- Syntax:  
+    `SHELL ["executable", "parameters"]`  
+- Can be overridden.
+- Usage:  
+    ```
+    #Bash
+    SHELL ["/bin/bash", "-c"]
+
+    #PowerShell
+    SHELL ["pwsh", "-command"]
+
+    #Custom script
+    SHELL ["/path/my_script.sh", "param1", "param2"]
+    ```  
+- This impacts the subsequent **RUN**, **CMD**, and **ENTRYPOINT** instructions i.e., all these 3 will be using the shell that is specified by SHELL instruction.
+
+
 
 
 #### CMD and ENTRYPOINT
