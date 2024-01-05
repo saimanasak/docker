@@ -1,4 +1,12 @@
-### Dockerfile
+# Dockerfile
+1. [ Intro ](#Intro)
+2. [ Commands ](#Commands)
+    - [ ADD ](#ADD)
+    - [ ARG ](#2-arg)
+
+
+<a name="Intro"></a>
+### Intro
 - A **Dockerfile** is a text document that contains all the commands a user can call on the command line to assemble an image. 
 - To build an image we need to have an dockerfile.
 - Docker images are the basis for the docker containers.
@@ -10,9 +18,11 @@ INSTRUCTION arguments
 - Instruction isn't case-sensitive.
 - A dockerfile must begin with a **FROM** instruction (if you are using any parent image i.e., FROM specifies the base image from which we want to start creating the image from)
 
+<a name="Commands"></a>
 ### Commands
 - There are many commands that can be used in a dockerfile.
 
+<a name="ADD"></a>
 #### 1. ADD
 - This instruction copies files, directories, or remote URLs from the source (build context) and adds them to the destination (image) of the filesystem.
 - Has the ability to extract compressed archives and fetch files from the URLs automatically.
@@ -30,6 +40,7 @@ INSTRUCTION arguments
 - If destination path ends with a trailing slash (/) then it's a directory.
 - Multiple sources can be specified
 
+<a name="ARG"></a>
 #### 2. ARG
 - Used to define a build-time variable that users can pass along with the docker build command.
 - Should specify the build arguments that are defined in the dockerfile, if not a warning will be triggered.
@@ -48,6 +59,7 @@ INSTRUCTION arguments
     docker image build --build-arg name=stranger
     ```
 
+<a name="CMD"></a>
 #### 3. CMD  
 - It is a default command to run when a container is started from the built image.
 - Can be overridden when running a container.
@@ -56,6 +68,7 @@ INSTRUCTION arguments
        `CMD ["executable", "param1", "param2"...] #exec form`  
        `CMD command param1 param2 ... #shell form`
 
+<a name="COPY"></a>
 #### 4. COPY  
 - Used to copy files or directories from the build context i.e, from our local to the filesystem of the image that is being created.
 - Syntax:  
@@ -65,6 +78,7 @@ INSTRUCTION arguments
     `COPY --chown=UID:GID <src>...<dest>`
 - Similar to ADD instruction.
 
+<a name="ENTRYPOINT"></a>
 #### 5. ENTRYPOINT  
 - Sets the main executable command and any default arguments.
 - Cannot be overridden.
@@ -72,6 +86,7 @@ INSTRUCTION arguments
     `ENTRYPOINT ["executable", "param1", "param2"...] #exec form`  
     `ENTRYPOINT command param1 param2 ... #shell form`
 
+<a name="ENV"></a>
 #### 6. ENV  
 - Used to set environment variables in the image.
 - key-value pair  
@@ -105,6 +120,7 @@ INSTRUCTION arguments
     > docker build --build-arg APP_VERSION=2.0 -t image_name
     ```
 
+<a name="EXPOSE"></a>
 #### 7. EXPOSE  
 - Informs Docker that the container listens on a specific network ports at runtime.
 - It just serves as a documentation feature to inform the users about the ports that to be exposed.
@@ -118,6 +134,7 @@ INSTRUCTION arguments
 - Can define multiple ports at once.  
     `docker run -p 8080:80 -p 3030:30 image_name`
 
+<a name="FROM"></a>
 #### 8. FROM  
 - Used to specify the base image from which we are building the image. 
 - Syntax:  
@@ -134,6 +151,7 @@ INSTRUCTION arguments
     CMD  /code/run-app
     ```
 
+<a name="HEALTHCHECK"></a>
 #### 9. HEALTHCHECK  
 - To define a command that Docker will run periodically to check the health of a running container.
 - Can specify customized health check commands.  
@@ -152,6 +170,7 @@ INSTRUCTION arguments
     - **1**: failed/unhealthy  
     - **2**: reserved/encountered an error      
 
+<a name="LABEL"></a>
 #### 10. LABEL  
 - Adds metadata to an image.
 - key-value pairs.
@@ -161,22 +180,26 @@ INSTRUCTION arguments
 - Can have multiple labels and can also be defined in a single line.  
 - Labels can be inherited from the specified base image (overrides with the most recently applied value)
 
+<a name="MAINTAINER"></a>
 #### 11. MAINTAINER  
 - deprecated
 - supports older versions of Docker.
 - bit similar to LABEL instruction.
 
+<a name="ONBUILD"></a>
 #### 12. ONBUILD  
 - Used to add instructions that will be executed during a later build stage i.e, when the our already image is used as base image for another image.
 - Syntax:  
     `ONBUILD INSTRUCTION`  
 - Can have multiple ONBUILD instructions.
 
+<a name="RUN"></a>
 #### 13. RUN  
 - Used to execute commands during the build process.
 - Syntax:  
     `RUN <command>`  
 
+<a name="SHELL"></a>
 #### 14. SHELL
 - USed to set the default shell that will be used during for RUN instructions.
 - Syntax:  
@@ -195,6 +218,7 @@ INSTRUCTION arguments
     ```  
 - This impacts the subsequent **RUN**, **CMD**, and **ENTRYPOINT** instructions i.e., all these 3 will be using the shell that is specified by SHELL instruction.
 
+<a name="STOPSIGNAL"></a>
 #### 15. STOPSIGNAL  
 - Used to set the system call signal that will be sent to the container to stop it gracefully.
 - Syntax:  
@@ -202,6 +226,7 @@ INSTRUCTION arguments
 - i.e., when we run a 'docker conatiner stop' command, then the Docker will send the signal to the primary process that is running on the container, allowing it to perform any cleanup or any other shutdown procedures before stopping.
 - Can be overridden by using **--stop-signal** flag along with the docker run and create commands.
 
+<a name="USER"></a>
 #### 16. USER
 - Set the user that will be used to run the commands.
 - Syntax:  
@@ -210,6 +235,7 @@ INSTRUCTION arguments
 - i.e., this allows us to run the commands specified in the image with a specified user.
 - By default, it runs as root user.
 
+<a name="VOLUME"></a>
 #### 17. VOLUME 
 - Used to create a mount point and declare that the specified directories within the container should be externally mounted as volumes.
 - Syntax:  
@@ -220,12 +246,14 @@ INSTRUCTION arguments
     `docker run -v /localhost/path:/web image_name`  
     Here, this commands mount's the host machine's '/localhost/path' directory to the '/web' directory inside the container as a volume.
 
+<a name="WORKDIR"></a>
 #### 18. WORKDIR  
 - Used to set the working directory for any RUN, CMD, ENTRYPOINT, COPY, and ADD instructions that follow it in the dockerfile.
 - Defines the default directory where the specified commands to be executed.
 - Syntax:  
     `WORKDIR /path/of/directory`  
 
+<a name="CMD and ENTRYPOINT"></a>
 #### CMD and ENTRYPOINT
 - CMD: commands and arguments can be overridden,  
   Example:  
