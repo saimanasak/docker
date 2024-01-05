@@ -53,5 +53,79 @@ INSTRUCTION arguments
 - Can be overridden when running a container.
 - Should be only one CMD instruction. If there are multiple, the last of the file is considered.
 - Syntax:  
-    `CMD ["executable", "param1", "param2"...] #exec form`  
-    `CMD command param1 param2 ... #shell form`
+       `CMD ["executable", "param1", "param2"...] #exec form`  
+       `CMD command param1 param2 ... #shell form`
+
+#### 4. COPY  
+- Used to copy files or directories from the build context i.e, from our local to the filesystem of the image that is being created.
+- Syntax:  
+    `COPY <src>...<dest>`
+- Can also set permissions to files along with copying.
+    `COPY --chown=username:groupname <src>...<dest>`
+    `COPY --chown=UID:GID <src>...<dest>`
+- Similar to ADD instruction.
+
+#### 5. ENTRYPOINT  
+- Sets the main executable command and any default arguments.
+- Cannot be overridden.
+- Syntax:  
+    `ENTRYPOINT ["executable", "param1", "param2"...] #exec form`  
+    `ENTRYPOINT command param1 param2 ... #shell form`
+
+#### 6. ENV  
+- Used to set environment variables in the image.
+- key-value pair  
+- Syntax:  
+    `ENV <key>=<value>...`
+- Multiple pairs can be set at once.
+    ```
+    ENV APP_NAME=myweb \
+        APP_VERSION=1.0
+    ```
+- Can use the environment variables in the other instructions as well.
+    ```
+    ENV APP_NAME=myweb \
+        APP_VERSION=1.0
+
+    WORKDIR /app
+    COPY . /app
+
+    LABEL version=$APP_VERSION
+    ```
+- Can be overridden during the build process using the **--build-arg** flag.
+    ```
+    ENV APP_NAME=myweb \
+        APP_VERSION=1.0
+
+    WORKDIR /app
+    COPY . /app
+
+    LABEL version=$APP_VERSION
+
+    > docker build --build-arg APP_VERSION=2.0 -t image_name
+    ```
+
+#### CMD and ENTRYPOINT
+- CMD: commands and arguments can be overridden,  
+  Example:  
+    ```
+    CMD ["npm", "start"]
+
+    #Here, 'npm start' command will be overridden by 'npm test' command
+    > docker run image_name npm test
+    ```  
+      
+  ENTRYPOINT: can't be overidden but we append additional arguments.  
+  Example:  
+    ```
+    ENTRYPOINT ["python", "web.py"]
+    CMD ["arg1", "arg2"]
+
+    #Here, arguments are appended to the main executable command
+    > docker run image_name python web.py custom_arg1 custom_arg2
+    ```
+- CMD can be used to provide default arguments for the command that is specified in ENTRYPOINT.  
+    ```
+    ENTRYPOINT ["python", "web.py"]
+    CMD ["arg1", "arg2"]
+    ```
