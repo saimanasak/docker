@@ -105,6 +105,55 @@ INSTRUCTION arguments
     > docker build --build-arg APP_VERSION=2.0 -t image_name
     ```
 
+#### 7. EXPOSE  
+- Informs Docker that the container listens on a specific network ports at runtime.
+- It just serves as a documentation feature to inform the users about the ports that to be exposed.
+- Syntax:  
+    `EXPOSE <port>/<protocol>...`  
+- There two protocols: **TCP** and **UDP**. Default protocol is TCP.
+- When we run a container, we use **-p or --publish** flags to map ports between the host and container.  
+    `docker run -p 8080:80 image_name`  
+- Values of EXPOSE can be overridden.
+- It is not necessary to define EXPOSE instruction in the Dockerfile.
+- Can define multiple ports at once.  
+    `docker run -p 8080:80 -p 3030:30 image_name`
+
+#### 8. FROM  
+- Used to specify the base image from which we are building the image. 
+- Syntax:  
+    `FROM <base_image>[:tag] [AS name]`  
+    `FROM [--platform=<platform>] <image>[:<tag>] [AS <name>]`  
+- Both tag and alias name are optional.
+- Another syntax:  
+    `FROM [--platform=<platform>] <base_image> [AS <name>]`
+- Only ARG instruction can be used before FROM. 
+  Example:  
+    ```
+    ARG  CODE_VERSION=latest
+    FROM base:${CODE_VERSION}
+    CMD  /code/run-app
+    ```
+
+#### 9. HEALTHCHECK  
+- To define a command that Docker will run periodically to check the health of a running container.
+- Can specify customized health check commands.  
+- Syntax:  
+    `HEALTHCHECK [options] CMD command` (checks by running the command)  
+    `HEALTHCHECK NONE` (disables healthcheck that is inherited from the base image)  
+- Options that can be defined before CMD are:  
+    `--interval=DURATION` (default: 30s)  
+    `--timeout=DURATION` (default: 30s)  
+    `--start-period=DURATION` (default: 0s)  
+    `--start-interval=DURATION` (default: 5s)  
+    `--retries=N` (default: 3)  
+- Only one HEALTHCHECK instruction in the file.  
+- Command's exit status:  
+    - **0**: success/healthy  
+    - **1**: failed/unhealthy  
+    - **2**: reserved/encountered an error      
+
+
+
 #### CMD and ENTRYPOINT
 - CMD: commands and arguments can be overridden,  
   Example:  
