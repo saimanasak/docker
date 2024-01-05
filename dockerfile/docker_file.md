@@ -226,8 +226,6 @@ INSTRUCTION arguments
 - Syntax:  
     `WORKDIR /path/of/directory`  
 
-
-
 #### CMD and ENTRYPOINT
 - CMD: commands and arguments can be overridden,  
   Example:  
