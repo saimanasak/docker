@@ -1,9 +1,24 @@
-# Dockerfile
-1. [ Intro ](#Intro)
-2. [ Commands ](#Commands)
-    - [ ADD ](#ADD)
+# DOCKERFILE
+- [ Intro ](#Intro)
+- [ Commands ](#Commands)
+    - [ ADD ](#1-add)
     - [ ARG ](#2-arg)
-
+    - [ CMD ](#3-cmd)
+    - [ COPY ](#4-copy)
+    - [ ENTRYPOINT ](#5-entrypoint)
+    - [ ENV ](#6-env)
+    - [ EXPOSE ](#7-expose)
+    - [ FROM ](#8-from)
+    - [ HEALTHCHECK ](#9-healthcheck)
+    - [ LABEL ](#10-label)
+    - [ MAINTAINER ](#11-maintainer)
+    - [ ONBUILD ](#12-onbuild)
+    - [ RUN ](#13-run)
+    - [ SHELL ](#14-shell)
+    - [ STOPSIGNAL ](#15-stopsignal)
+    - [ VOLUME ](#17-volume)
+    - [ WOKDIR ](#18-workdir)
+- [ CMD and ENTRYPOINT ](#cmd-and-entrypoint)
 
 <a name="Intro"></a>
 ### Intro
