@@ -144,10 +144,13 @@ INSTRUCTION arguments
 - There two protocols: **TCP** and **UDP**. Default protocol is TCP.
 - When we run a container, we use **-p or --publish** flags to map ports between the host and container.  
     `docker run -p 8080:80 image_name`  
-- Values of EXPOSE can be overridden.
 - It is not necessary to define EXPOSE instruction in the Dockerfile.
 - Can define multiple ports at once.  
-    `docker run -p 8080:80 -p 3030:30 image_name`
+    `docker run -p 8080:80 -p 3030:80 image_name`
+- Example:  
+    'docker run -d --name container_name -p 4567:80 image_name'  
+    Here, any request that comes to the host port on 4567 will be forwarded to the container port on 80.  
+    We can access the website by running --> localhost:host_port (4567) or ip_address:host_port   
 
 <a name="FROM"></a>
 #### 8. FROM  
@@ -184,6 +187,8 @@ INSTRUCTION arguments
     - **0**: success/healthy  
     - **1**: failed/unhealthy  
     - **2**: reserved/encountered an error      
+- Example:  
+    'docker run -dt --name container_name --health-cmd "command" image_id'
 
 <a name="LABEL"></a>
 #### 10. LABEL  
