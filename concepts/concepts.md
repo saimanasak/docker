@@ -10,6 +10,14 @@
     --name=some_desired_container_name
     `
 
+#### Tagging  
+- A way to assign a name and a desired version to an image.  
+- Syntax:  
+    `docker build -t <repo_name>`
+    `docker tag <image_name>:<associated_tag> <new_image_name>:<new_tag>`
+- Second syntax is used to create a tag to already existing image.
+- If no tag is mentioned, it takes the default one i.e., **latest** tag.
+
 #### Port Binding  
 - By default, containers can communicate with the outside world but the outside world cannot communicate with the containers.
 - So for this , we have a process called port binding.
@@ -62,3 +70,21 @@
 - To remove a running container, first we need to stop the container and then remove.
 - We cannot directly remove a running container.
 - If we use **--** flag then it automatically removes the container then it exits.
+
+#### Commit
+- Creating a new from a container changes.
+- i.e., When we make few modifications in a running container and from this we can create a new image from the modified running container.  
+- Syntax:  
+`docker commit <running_container_name/id> <new_image_name>:<tag(optional)>`
+- We can also change the CMD of the previous image during the commit.  
+Example:  
+`docker commit --change='CMD ["some_command"]' <running_container_name/id> <new_image_name>:<tag(optional)>`
+- We can make changes to the following instructions - CMD, ENTRYPOINT, ENV, EXPOSE, LABEL, ONBUILD, USER, VOLUME, WORKDIR.
+
+#### Layers  
+- Each instruction in a dockerfile creates a new layer in the image.
+- Readable and immutable.
+- Once a layer is created, it cannot be modified.
+- All the layers can be seen using -  
+`docker inspect <image_name>`  
+- All the changes made in the container will not be affected to the layer.      

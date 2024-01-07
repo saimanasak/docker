@@ -32,6 +32,10 @@ INSTRUCTION arguments
 ```
 - Instruction isn't case-sensitive.
 - A dockerfile must begin with a **FROM** instruction (if you are using any parent image i.e., FROM specifies the base image from which we want to start creating the image from)
+- It's better to use the name of the dockerfile as **Dockerfile** because the Docker CLI automatically looks for a file named Dockerfile in the build context by default.  
+- If there's any different name then need to use a **-f** flag.  
+Syntax:  
+    `docker build -f <Dockerfile> <build-context>`
 
 <a name="Commands"></a>
 ### Commands
