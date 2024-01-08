@@ -87,4 +87,18 @@ Example:
 - Once a layer is created, it cannot be modified.
 - All the layers can be seen using -  
 `docker inspect <image_name>`  
-- All the changes made in the container will not be affected to the layer.      
+- All the changes made in the container will not be affected to the layer.  
+- Flattening docker images:  
+    - This helps to reduce the size of an image.  
+    - More number of layers, more the size of an image.  
+    - One way is:  
+        - Exporting and Importing the container.  
+        - Export: `docker export container_name > newfilename.tar`  
+        - Import: `cat newfilename.tar | docker import - new_image_name:tag`    
+
+#### Pruning  
+- Cleans up unused images.  
+- By default, it cleans up dangling images (images without tags and images that aren't referenced by any container)
+- Syntax:  
+`docker image prune`
+`docker image prune -a`
