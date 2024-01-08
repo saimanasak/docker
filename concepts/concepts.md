@@ -10,6 +10,24 @@
     --name=some_desired_container_name
     `
 
+#### Ragistry  
+- A stateless, highly scalable server side application and allows us to distribute docker images.  
+- Can store and manage the docker images.  
+- There are different registries available:  
+    - Docker Hub  
+    - Docker Trusted Registry  
+    - Private Repository (like AWS ECR)  
+    - Docker Registry  
+
+#### Pushing an image  
+- Steps to push an image into registry URL:  
+    - Login to the appropriate container registry using the command: 
+        `docker login <registry_URL>`
+    - It's a good practice to tag the image:  
+        `docker tag <name_local_image> <registry_URL>/<repository_name>:<tag>`
+    - Now, push the image to registry:  
+        `docker push <registry_URL>/<repository_name>:<tag>`
+
 #### Tagging  
 - A way to assign a name and a desired version to an image.  
 - Syntax:  
@@ -102,3 +120,13 @@ Example:
 - Syntax:  
 `docker image prune`
 `docker image prune -a`
+
+#### Search  
+- It searches for images in Docker Hub.  
+- Syntax:  
+    `docker search <keyword>`  
+- Options:  
+    - --filter (based on STARS, IS-AUTOMATED, IS-OFFICIAL)  
+    - --format  
+    - --limit  
+    - --no-trunc  
