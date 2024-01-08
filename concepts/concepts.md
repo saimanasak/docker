@@ -130,3 +130,10 @@ Example:
     - --format  
     - --limit  
     - --no-trunc  
+
+#### Moving images across hosts  
+- Steps:  
+    - First we need to **save** one or more images to a tar archive.  
+        `docker save <image_name> > file.tar`  
+    - Then we need to **load** an image from a tar archive.  
+        `docker load < file.tar`  
