@@ -38,10 +38,17 @@
 
 #### Port Binding  
 - By default, containers can communicate with the outside world but the outside world cannot communicate with the containers.
-- So for this , we have a process called port binding.
+- So for this, we have a process called port binding.
 - This maps a host port to the container port.
     - Host port: It is a port on the host machine to which docker binds and this allow external communication with the application/services running inside a container.
-    - Container port: It is a port exposed by a container in which service/application is running and this listens for the incoming connections.
+    - Container port: It is a port exposed by a container in which service/application is running and this listens for the incoming connections.  
+- **-p** and **--publish** flags allow us to expose our desired ports from the docker container to the host machine. It publishes only the list of ports which are specified.  
+Syntax:  
+`docker run -dt --name <container_name> -p <host_port>:<container_port> <image_name>`  
+`docker run -dt --name <container_name> --publish <host_port>:<container_port> <image_name>`
+- **-P** is reffered to as publish all. All exposed ports are published to random ports of a host.  
+Syntax:  
+`docker run -dt --name <container_name> -P <image_name>`  
 
 #### Daemon
 - It manages the docker containers and is responsible for creating, running, and managing the docker containers on a host system.
@@ -194,5 +201,9 @@ Example:
     - Containers running in host network mode can access the same network interfaces, ports, and the  ip-addresses as processes running on the host.  
     - Syntax:  
         `docker run -d --name <container_name> --network host <image_name>`  
+    - When two different applications like nginx and tomcat are running in the host network mode, then each of the application will be accessed using their ports i.e., for nginx on port 80 and for tomcat on port 8080.   
 - None Network:  
-    
+    - Using this we can disable the networking stack on a container.  
+    - No ip will be configured, no access to the external networks, and no communication can be made with the other containers.  
+- Legacy approach for linking the containers:  
+    `docker run -d --link <source_container>:<alias_name> --name <container_name> <image_name>`  
