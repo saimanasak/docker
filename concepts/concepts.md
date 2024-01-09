@@ -10,7 +10,7 @@
     --name=some_desired_container_name
     `
 
-#### Ragistry  
+#### Registry  
 - A stateless, highly scalable server side application and allows us to distribute docker images.  
 - Can store and manage the docker images.  
 - There are different registries available:  
@@ -193,4 +193,6 @@ Example:
     - Here, container directly uses the network of the host system i.e., it gets full access of the host's network interfaces.  
     - Containers running in host network mode can access the same network interfaces, ports, and the  ip-addresses as processes running on the host.  
     - Syntax:  
-        `docker run -d --name <container_name> --network host <image_name>`
+        `docker run -d --name <container_name> --network host <image_name>`  
+- None Network:  
+    
