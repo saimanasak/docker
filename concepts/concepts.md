@@ -104,6 +104,8 @@ Syntax:
 - When we start a container, a default command is executed that runs as PID1.
 - This default command can be defined when we define a container image.
 - Can override this command.
+- Syntax:  
+    `docker run -d <image_name> <command>`
 
 <a name="Docker 'exec'"></a>
 #### Docker 'exec'
@@ -123,17 +125,31 @@ Syntax:
 #### Restart Policies
 - By default, containers will not start when they exit or when daemon is restarted.
 - Docker provides few restart policies to decide whether the containers should start automatically when they exit or when the daemon restarts.
-- Use **--restart** flag with the run command.
+- Use **--restart** flag with the run command.  
+- Options and their syntax:   
+    - no restart policy(default): `docker run -d --name <container_name> <image_name>`   
+    - always: `docker run -d --name <container_name> --restart always <image_name>`  
+    - unless stopped (manually): `docker run -d --name <container_name> --restart unless-stopped <image_name>`  
+    - on failure (exits with a non-zero status): `docker run -d --name <container_name> --restart on-failure:<max_no.of_restart_attempts> <image_name>`  
+- Policies can be applied or modified for the running container as well:  
+    `docker update --restart option <container_name>`
 
 <a name="Removing"></a>
 #### Removing
 - To remove a running container, first we need to stop the container and then remove.
 - We cannot directly remove a running container.
-- If we use **--** flag then it automatically removes the container then it exits.
+- If we use **--rm** flag then it automatically removes the container then it exits.  
+- Syntax:  
+    `docker stop <container_name>`  
+    `docker rm <container_name>`  
+- We can also remove the images, if there are no containers associated to it:  
+    `docker rmi <image_name>`  
+- We can also remove the images, if there are any containers associated to it:  
+    `docker rmi -f <image_name>`  
 
 <a name="Commit"></a>
 #### Commit
-- Creating a new from a container changes.
+- Creating a new image from a modified container.
 - i.e., When we make few modifications in a running container and from this we can create a new image from the modified running container.  
 - Syntax:  
 `docker commit <running_container_name/id> <new_image_name>:<tag(optional)>`
@@ -149,6 +165,7 @@ Example:
 - Once a layer is created, it cannot be modified.
 - All the layers can be seen using -  
 `docker inspect <image_name>`  
+`docker history <image_name>`    
 - All the changes made in the container will not be affected to the layer.  
 - Flattening docker images:  
     - This helps to reduce the size of an image.  
@@ -249,3 +266,4 @@ Example:
     - No ip will be configured, no access to the external networks, and no communication can be made with the other containers.  
 - Legacy approach for linking the containers:  
     `docker run -d --link <source_container>:<alias_name> --name <container_name> <image_name>`  
+    
