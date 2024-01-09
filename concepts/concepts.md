@@ -47,7 +47,7 @@
 <a name="Pushing an image"></a>
 #### Pushing an image  
 - Steps to push an image into registry URL:  
-    - Login to the appropriate container registry using the command: 
+    - Login to the appropriate container registry using the command:   
         `docker login <registry_URL>`
     - It's a good practice to tag the image:  
         `docker tag <name_local_image> <registry_URL>/<repository_name>:<tag>`
@@ -58,7 +58,7 @@
 #### Tagging  
 - A way to assign a name and a desired version to an image.  
 - Syntax:  
-    `docker build -t <repo_name>`
+    `docker build -t <repo_name>`  
     `docker tag <image_name>:<associated_tag> <new_image_name>:<new_tag>`
 - Second syntax is used to create a tag to already existing image.
 - If no tag is mentioned, it takes the default one i.e., **latest** tag.
@@ -163,7 +163,7 @@ Example:
 - Cleans up unused images.  
 - By default, it cleans up dangling images (images without tags and images that aren't referenced by any container)
 - Syntax:  
-`docker image prune`
+`docker image prune`  
 `docker image prune -a`
 
 <a name="Search"></a>
