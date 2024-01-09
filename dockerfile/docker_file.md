@@ -23,7 +23,7 @@
 <a name="Intro"></a>
 ### Intro
 - A **Dockerfile** is a text document that contains all the commands a user can call on the command line to assemble an image. 
-- To build an image we need to have an dockerfile.
+- To build an image we need to have a dockerfile.
 - Docker images are the basis for the docker containers.
 - Format:
 ```
@@ -82,7 +82,7 @@ Syntax:
 #### 3. CMD  
 - It is a default command to run when a container is started from the built image.
 - Can be overridden when running a container.
-- Should be only one CMD instruction. If there are multiple, the last of the file is considered.
+- Should be only one CMD instruction. If there are multiple, the last one of the file is considered.
 - Syntax:  
        `CMD ["executable", "param1", "param2"...] #exec form`  
        `CMD command param1 param2 ... #shell form`
@@ -181,12 +181,12 @@ Syntax:
     `HEALTHCHECK [options] CMD command` (checks by running the command)  
     `HEALTHCHECK NONE` (disables healthcheck that is inherited from the base image)  
 - Options that can be defined before CMD are:  
-    `--interval=DURATION` (default: 30s)  
-    `--timeout=DURATION` (default: 30s)  
-    `--start-period=DURATION` (default: 0s)  
-    `--start-interval=DURATION` (default: 5s)  
-    `--retries=N` (default: 3)  
-- Only one HEALTHCHECK instruction in the file.  
+    `--interval=DURATION` (default: 30s) : time interval between consecutive health checks.  
+    `--timeout=DURATION` (default: 30s) : maximum time docker will wait for the health check command to complete.  
+    `--start-period=DURATION` (default: 0s) : time during which the health check command is allowed to run after starting the container.  
+    `--start-interval=DURATION` (default: 5s) : time between the health checks during the start period.  
+    `--retries=N` (default: 3) : number of retries needed to consider a container is unhealthy.  
+- Only one HEALTHCHECK instruction in the file. if there are many, last one will be considered.    
 - Command's exit status:  
     - **0**: success/healthy  
     - **1**: failed/unhealthy  
@@ -225,7 +225,7 @@ Syntax:
 
 <a name="SHELL"></a>
 #### 14. SHELL
-- USed to set the default shell that will be used during for RUN instructions.
+- Us    ed to set the default shell that will be used during for RUN instructions.
 - Syntax:  
     `SHELL ["executable", "parameters"]`  
 - Can be overridden.
@@ -248,7 +248,12 @@ Syntax:
 - Syntax:  
     `STOPSIGNAL signal`  
 - i.e., when we run a 'docker conatiner stop' command, then the Docker will send the signal to the primary process that is running on the container, allowing it to perform any cleanup or any other shutdown procedures before stopping.
-- Can be overridden by using **--stop-signal** flag along with the docker run and create commands.
+- Can be overridden by using **--stop-signal** flag along with the docker run and create commands.  
+- Some signals are:  
+    - SIGTERM: Termination Signal-graceful shutdown.  
+    - SIGINT: Interrupt Signal-clean shutdown, Ctrl+C.  
+    - SIGQUIT: Quit Signal- similar to above both but here a core dump generation takes place (i.e., a core dump file is created that contains the memory image of a process at a specific point of time)
+    - SIGKILL: Kill Signal-immediately terminates the process.
 
 <a name="USER"></a>
 #### 16. USER
