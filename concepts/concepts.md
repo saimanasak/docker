@@ -1,6 +1,30 @@
+# CONCEPTS  
+- [ Image ](#Image)
+- [ Container ](#container)
+- [ Registry ](#registry)
+- [ Pushing an image ](#pushing-an-image)
+- [ Tagging ](#tagging)
+- [ Port Binding ](#port-binding)
+- [ Daemon ](#daemon)
+- [ Modes ](#modes)
+- [ Default Container Commands ](#default-container-commands)
+- [ Docker 'exec' ](#docker-exec)
+- [ 'it' flags ](#it-flags)
+- [ Restart Policies ](#restart-policies)
+- [ Removing ](#removing)
+- [ Commit ](#commit)
+- [ Layers ](#layers)
+- [ Pruning ](#pruning)
+- [ Search ](#search)
+- [ Moving images across hosts ](#moving-images-across-hosts)
+- [ Build Cache ](#build-cache)
+- [ Networking ](#networking)
+
+<a name="Image"></a>
 #### Image  
 - It is a file that contains all the necessary dependencies and configurations which are required to run an application.
 
+<a name="Container"></a>
 #### Container
 - It is a running instance of an image.
 - A Universally Unique Identifier (UUID) when a container is created.
@@ -10,6 +34,7 @@
     --name=some_desired_container_name
     `
 
+<a name="Registry"></a>
 #### Registry  
 - A stateless, highly scalable server side application and allows us to distribute docker images.  
 - Can store and manage the docker images.  
@@ -19,6 +44,7 @@
     - Private Repository (like AWS ECR)  
     - Docker Registry  
 
+<a name="Pushing an image"></a>
 #### Pushing an image  
 - Steps to push an image into registry URL:  
     - Login to the appropriate container registry using the command: 
@@ -28,6 +54,7 @@
     - Now, push the image to registry:  
         `docker push <registry_URL>/<repository_name>:<tag>`
 
+<a name="Tagging"></a>
 #### Tagging  
 - A way to assign a name and a desired version to an image.  
 - Syntax:  
@@ -36,6 +63,7 @@
 - Second syntax is used to create a tag to already existing image.
 - If no tag is mentioned, it takes the default one i.e., **latest** tag.
 
+<a name="Port Binding"></a>
 #### Port Binding  
 - By default, containers can communicate with the outside world but the outside world cannot communicate with the containers.
 - So for this, we have a process called port binding.
@@ -50,6 +78,7 @@ Syntax:
 Syntax:  
 `docker run -dt --name <container_name> -P <image_name>`  
 
+<a name="Daemon"></a>
 #### Daemon
 - It manages the docker containers and is responsible for creating, running, and managing the docker containers on a host system.
 - When we run a "docker run" command then docker CLI sends a command to the daemon and which then executes it.
@@ -58,6 +87,7 @@ Syntax:
     /etc/docker/daemon.json
     `
 
+<a name="Modes"></a>
 #### Modes
 - We have two modes: Attached/Foreground/Interactive and Detached modes.
     - Attached mode: 
@@ -69,33 +99,39 @@ Syntax:
         - Here, we get the access to the terminal.
         - We use **-d** option to enable this mode.
 
+<a name="Default Container Commands"></a>
 #### Default Container Commands
 - When we start a container, a default command is executed that runs as PID1.
 - This default command can be defined when we define a container image.
 - Can override this command.
 
+<a name="Docker 'exec'"></a>
 #### Docker 'exec'
 - Docker container exec command is used to run a new command in a running container.
 - This can be used only when the PID1 (i.e., the primary process) is running.
 - If we stop the primary process then the container is stopped/terminated.
 - This will not be restarted if the container is restarted.
 
+<a name="'it' flags"></a>
 #### 'it' flags
 - Every process that is created in the linux environment has three file descriptors: stdin, stdout, and stderr.
 - 'it flag'
     - **-i** is an interactive flag that keeps stdin open even if it's not attached (if not mentioned, we cannot give any input as we desired)
     - **-t** is a tty flag that allocates a pesudo-TTY (which means it gives us a terminal to work on)
 
+<a name="Restart Policies"></a>
 #### Restart Policies
 - By default, containers will not start when they exit or when daemon is restarted.
 - Docker provides few restart policies to decide whether the containers should start automatically when they exit or when the daemon restarts.
 - Use **--restart** flag with the run command.
 
+<a name="Removing"></a>
 #### Removing
 - To remove a running container, first we need to stop the container and then remove.
 - We cannot directly remove a running container.
 - If we use **--** flag then it automatically removes the container then it exits.
 
+<a name="Commit"></a>
 #### Commit
 - Creating a new from a container changes.
 - i.e., When we make few modifications in a running container and from this we can create a new image from the modified running container.  
@@ -106,6 +142,7 @@ Example:
 `docker commit --change='CMD ["some_command"]' <running_container_name/id> <new_image_name>:<tag(optional)>`
 - We can make changes to the following instructions - CMD, ENTRYPOINT, ENV, EXPOSE, LABEL, ONBUILD, USER, VOLUME, WORKDIR.
 
+<a name="Layers"></a>
 #### Layers  
 - Each instruction in a dockerfile creates a new layer in the image.
 - Readable and immutable.
@@ -121,6 +158,7 @@ Example:
         - Export: `docker export container_name > newfilename.tar`  
         - Import: `cat newfilename.tar | docker import - new_image_name:tag`    
 
+<a name="Pruning"></a>
 #### Pruning  
 - Cleans up unused images.  
 - By default, it cleans up dangling images (images without tags and images that aren't referenced by any container)
@@ -128,6 +166,7 @@ Example:
 `docker image prune`
 `docker image prune -a`
 
+<a name="Search"></a>
 #### Search  
 - It searches for images in Docker Hub.  
 - Syntax:  
@@ -138,6 +177,7 @@ Example:
     - --limit  
     - --no-trunc  
 
+<a name="Moving images across hosts"></a>
 #### Moving images across hosts  
 - Steps:  
     - First we need to **save** one or more images to a tar archive.  
@@ -145,12 +185,14 @@ Example:
     - Then we need to **load** an image from a tar archive.  
         `docker load < file.tar`  
 
+<a name="Build Cache"></a>
 #### Build Cache  
 - Docker creates the images using layers.  
 - Each instruction in a dockerfile creates a new layer in the image.  
 - Docker uses a layer cache to optimize the process of building the docker images and make it faster.  
 - If cache can't be used for any particular layer, then all the subsequent layers won't be loaded from the cache.  
 
+<a name="Networking"></a>
 #### Networking  
 - Using this containers can communicate among them or with internet or be isolated.  
 - Using drivers, docker network subsystem is pluggable.  
