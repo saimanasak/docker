@@ -74,7 +74,7 @@
 Syntax:  
 `docker run -dt --name <container_name> -p <host_port>:<container_port> <image_name>`  
 `docker run -dt --name <container_name> --publish <host_port>:<container_port> <image_name>`
-- **-P** is reffered to as publish all. All exposed ports are published to random ports of a host.  
+- **-P** is reffered to as publish all. All exposed ports are published to random port of a host.  
 Syntax:  
 `docker run -dt --name <container_name> -P <image_name>`  
 
@@ -133,6 +133,8 @@ Syntax:
     - on failure (exits with a non-zero status): `docker run -d --name <container_name> --restart on-failure:<max_no.of_restart_attempts> <image_name>`  
 - Policies can be applied or modified for the running container as well:  
     `docker update --restart option <container_name>`
+> [!NOTE]
+> Note: These policies will work only after restarting the docker service.  
 
 <a name="Removing"></a>
 #### Removing
@@ -226,8 +228,8 @@ Example:
     - Example:  
       ```
       #create two containers  
-      > container run -d --name mynginx01 nginx  
-      > container run -d --name mynginx02 nginx  
+      > docker run -d --name mynginx01 nginx  
+      > docker run -d --name mynginx02 nginx  
 
       #inspect one of the containers to know the ip-address
       > docker inspect mynginx01  
@@ -246,8 +248,8 @@ Example:
       docker network create --driver bridge mybridge
 
       #create two containers  
-      > container run -d --name mynginx01 --network mybridge nginx  
-      > container run -d --name mynginx02 --network mybridge nginx  
+      > docker run -d --name mynginx01 --network mybridge nginx  
+      > docker -d --name mynginx02 --network mybridge nginx  
 
       #login to one of the containers and connect to the other container  
       > docker container exec -it mynginx02 bash  
@@ -266,4 +268,3 @@ Example:
     - No ip will be configured, no access to the external networks, and no communication can be made with the other containers.  
 - Legacy approach for linking the containers:  
     `docker run -d --link <source_container>:<alias_name> --name <container_name> <image_name>`  
-    
