@@ -133,7 +133,8 @@ Syntax:
     - on failure (exits with a non-zero status): `docker run -d --name <container_name> --restart on-failure:<max_no.of_restart_attempts> <image_name>`  
 - Policies can be applied or modified for the running container as well:  
     `docker update --restart option <container_name>`
-> [!NOTE] These policies will work only after restarting the docker service.  
+> [!NOTE] 
+> These policies will work only after restarting the docker service.  
 
 <a name="Removing"></a>
 #### Removing
