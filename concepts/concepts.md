@@ -134,7 +134,7 @@ Syntax:
 - Policies can be applied or modified for the running container as well:  
     `docker update --restart option <container_name>`
 > [!NOTE]
-> Note: These policies will work only after restarting the docker service.  
+> These policies will work only after restarting the docker service.  
 
 <a name="Removing"></a>
 #### Removing
