@@ -128,14 +128,14 @@ Syntax:
 - Use **--restart** flag with the run command.  
 - Options and their syntax:   
     - no restart policy(default): `docker run -d --name <container_name> <image_name>`   
-    - always: `docker run -d --name <container_name> --restart always <image_name>`  
-    - unless stopped (manually): `docker run -d --name <container_name> --restart unless-stopped <image_name>`  
+    - always: Always restart the container if it stops. If it's manually stopped, it's restarted only when Docker daemon restarts or the container itself is manually restarted.
+    `docker run -d --name <container_name> --restart always <image_name>`  
+    - unless stopped (manually): Similar to always, except that when the container is stopped (manually or otherwise), it isn't restarted even after Docker daemon restarts.
+    `docker run -d --name <container_name> --restart unless-stopped <image_name>`  
     - on failure (exits with a non-zero status): `docker run -d --name <container_name> --restart on-failure:<max_no.of_restart_attempts> <image_name>`  
 - Policies can be applied or modified for the running container as well:  
-    `docker update --restart option <container_name>`
-> [!NOTE] 
-> These policies will work only after restarting the docker service.  
-
+    `docker update --restart option <container_name>`  
+    
 <a name="Removing"></a>
 #### Removing
 - To remove a running container, first we need to stop the container and then remove.
