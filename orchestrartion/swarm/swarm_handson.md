@@ -82,3 +82,4 @@
             `docker service scale mynginx=5`  
         
         ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/scale_up.png)  
+        ![test](./screenshots/docker_node.png)
