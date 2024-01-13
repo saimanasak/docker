@@ -42,6 +42,43 @@
 - Command to create a worker node:  
     `docker swarm join --token ......`  
     - Copy the token command and run it in the worker nodes of the cluster.  
-    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/worker_node2.png)
+    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/worker_node2.png)  
+  
+    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/worker_node3.png)  
 
-    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/worker_node3.png)
+- Command to list the nodes in a cluster:  
+`docker node ls`  
+    - Leader is the manager node and remaining nodes are the worker nodes. So, all the nodes in the cluster are up and running.   
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/docker_node.png)  
+
+#### Creating a service  
+- Command to create a service:  
+`docker service create --name <service-name> --replicas <count> <image-name>`
+- Created a service called **mynginx** using **nginx** image with 2 tasks (i.e., containers)  
+- Command: `docker service create --name mynginx --replicas 2 nginx`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_create.png)
+
+#### Listing services  
+- Syntax to list services that are running in the swarm.  
+`docker service ls`  
+- So, mynginx is the service that is running in the cluster.
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_list.png)  
+
+#### Listing the tasks  
+- Syntax to list the tasks on the running instances which are associated with a specific service.  
+`docker service ps <service-name>`  
+- There are 2 tasks running in the cluster.  
+- Command used: `docker service ps mynginx`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_ps.png)  
+
+#### Scaling  
+- Can scale the tasks by using two ways.
+    1. Using **scale** option  
+        - Syntax: `docker service scale <service-name>:<count>`  
+        - To scale up the tasks by 5, command used:  
+            `docker service scale mynginx=5`  
+        
+        ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/scale_up.png)  
