@@ -11,17 +11,18 @@
 - [ Inspecting Node ](#inspecting-node)
 - [ Publishing Port ](#publishing-port)
 - [ Removing Service ](#removing-service)  
-- [ Removing Node ](#removing-node)
+- [ Removing Node ](#removing-node)  
+- [ View Logs ](#view-logs)
 
 <a name="setting"></a>
-#### Setting up an Environment  
+### Setting up an Environment  
 - Launch the servers in any of the cloud provider.  
 - Selected DigitalOcean provider.  
 - Launched three nodes with names: swarm-1, swarm-2, and swarm-3 nodes.  
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/nodes.png)
 
 <a name="install"></a>
-#### Docker Engine Installation 
+### Docker Engine Installation 
 - Install docker engine on all the nodes.    
 - Installation steps for centOS (Here, centOS platform servers were launched):  
     ```
@@ -40,7 +41,7 @@
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/docker_status.png)
 
 <a name="cluster"></a>
-#### Creating Swarm Cluster  
+### Creating Swarm Cluster  
 - To form a cluster with the 3 nodes: make one of them as manager and remaining 2 nodes as worker nodes.  
 - swarm-1: Manager Node  
   swarm-2 and swarm-3: Worker Nodes  
@@ -70,7 +71,7 @@
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/docker_node.png)  
 
 <a name="create"></a>
-#### Creating Service  
+### Creating Service  
 - Command to create a service:  
 `docker service create --name <service-name> --replicas <count> <image-name>`
 - Created a service called **mynginx** using **nginx** image with 2 tasks (i.e., containers)  
@@ -79,7 +80,7 @@
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_create.png)
 
 <a name="listing services"></a>
-#### Listing Services  
+### Listing Services  
 - Syntax to list services that are running in the swarm.  
 `docker service ls`  
 - So, mynginx is the service that is running in the cluster.
@@ -87,7 +88,7 @@
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_list.png)  
 
 <a name="listing tasks"></a>
-#### Listing Tasks  
+### Listing Tasks  
 - Syntax to list the tasks on the running instances which are associated with a specific service.  
 `docker service ps <service-name>`  
 - There are 2 tasks running in the cluster.  
@@ -96,7 +97,7 @@
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_ps.png)  
 
 <a name="scaling"></a>
-#### Scaling  
+### Scaling  
 - Can scale the tasks by using two ways.
     1. Using **scale** option  
         - Syntax: `docker service scale <service-name>=<count>`  
@@ -126,7 +127,7 @@
         ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/update_down.png)  
 
 <a name="global"></a>
-#### Global Service  
+### Global Service  
 - Synatx to create a global service:  
 `docker service create --name <service-name> --mode global -dt <image-name>`  
 - Using this we can run a service on all the nodes in the cluster.  
@@ -135,7 +136,7 @@
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/global_service.png)  
 
 <a name="drain"></a>
-#### Draining Node  
+### Draining Node  
 - Synatx to make a node unavailable:  
     `docker node update --availability drain <node-name/id>`  
 - Command used to drain swarm-2 node:  
@@ -156,19 +157,19 @@
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/nodes_after_active.png)  
 
 <a name="inspect service"></a>
-#### Inspecting Service  
+### Inspecting Service  
 - Syntax to inspect a service: `docker service inspect <service-name/id> --pretty`  
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/inspect_service.png)  
 
 <a name="inspect node"></a>
-#### Inspecting Node  
+### Inspecting Node  
 - Syntax: `docker node inspect <node-name/id> --pretty`  
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/inspect_node.png)  
 
 <a name="publish"></a>
-#### Publishing Port  
+### Publishing Port  
 - Syntax to publish a port to a service:  
     `docker service create --name <service-name> --replicas <count> -p <host_port>:<container_port> <image-name>`  
 - Now, nginx will be running on port 8080 for all the containers/tasks running under the mynginx service.  
@@ -180,18 +181,25 @@
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/netstat.png)  
 
 <a name="remove"></a>
-#### Removing Service  
+### Removing Service  
 - Syntax: `docker service rm <service-name/id>`  
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/remove.png)  
 
 <a name="remove node"></a>
-#### Removing Node  
+### Removing Node  
 - Syntax to remove a node from the cluster:  
 `docker node rm <node-name/id>`  
 - Before removing the node, there should be no running containers/tasks in the node.  
 
-![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/remove_node.png)
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/remove_node.png)  
+
+<a name="logs"></a>
+### View Logs  
+- Syntax to view logs of a service:  
+`docker service logs <service-name/id>`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/logs.png)  
 
 > [!NOTE]  
 > All the above commands that manage the cluster should be done only in the **manager** node.  
