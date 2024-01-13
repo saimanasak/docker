@@ -102,3 +102,42 @@
             `docker service update --replicas=2 mynginx`  
 
         ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/update_down.png)  
+
+#### Global service  
+- Synatx to create a global service:  
+`docker service create --name <service-name> --mode global -dt <image-name>`  
+- Using this we can run a service on all the nodes in the cluster.  
+- Command used: `docker service create --name mybusybox --mode global -dt busybox`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/global_service.png)  
+
+#### Draining a node  
+- Synatx to make a node unavailable:  
+    `docker node update --availability drain <node-name/id>`  
+- Command used to drain swarm-2 node:  
+    `docker node update --availability drain swarm-2`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/drain_node.png)
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/nodes_after_drain.png)
+
+- Now, the task mynginx which is running on swarm-2 has moved to swarm-3 node.  
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/swarm-2_before.png)
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/swarm-2_after.png)
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/swarm-3_after.png)
+
+- Command to make the drained node available:  
+`docker node update --availability active <node-name/id>`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/nodes_after_active.png)  
+
+#### Inspecting a service  
+- Syntax to inspect a service: `docker service inspect <service-name/id> --pretty`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/inspect_service.png)  
+
+#### Inspecting a node  
+- Syntax: `docker node inspect <node-name/id> --pretty`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/inspect_node.png)  

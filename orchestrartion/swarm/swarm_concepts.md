@@ -48,3 +48,12 @@
 - A task represents a running instance of a container within a Docker Swarm service.  
 - It carries a Docker container and the commands to run inside the container.  
 - Once a task is assigned to a node, it cannot be moved to the another node - it should run or fail.  
+
+#### Draining  
+- Marking a node as unavailable.  
+- Useful when there's a maintenance or decommissioning a node without affecting the running tasks.  
+- When we drain a node the tasks that are running on that will be moved to the other available nodes in the cluster.  
+
+#### Inspecting  
+- Docker Inspect provides us detailed info about Docker objects.  
+- In the docker swarm, inspect can be used to services and nodes.  
