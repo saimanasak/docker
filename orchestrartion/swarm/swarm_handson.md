@@ -16,4 +16,7 @@
 
     sudo systemctl start docker #starting docker  
     ```  
-- For other platforms, link to install docker engine --> [Docker Engine](https://docs.docker.com/engine/install/)
+- For other platforms, link to install docker engine --> [Docker Engine](https://docs.docker.com/engine/install/)  
+- Command to check if docker is running on server:  
+`systemctl status docker`  
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/docker_status.png)
