@@ -2,6 +2,7 @@
 - Launch the servers in any of the cloud provider.  
 - Selected DigitalOcean provider.  
 - Launched three nodes with names: swarm-1, swarm-2, and swarm-3 nodes.  
+- ![screenshot](https://github.com/saimanasak/docker/orchestrartion/swarm/screenshots/nodes.png)
 
 #### Install docker engine  
 - Install docker engine on all the nodes.    
