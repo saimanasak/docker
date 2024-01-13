@@ -141,3 +141,14 @@
 - Syntax: `docker node inspect <node-name/id> --pretty`  
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/inspect_node.png)  
+
+#### Publishing a port  
+- Syntax to publish a port to a service:  
+    `docker service create --name <service-name> --replicas <count> -p <host_port>:<container_port> <image-name>`  
+- Now, nginx will be running on port 8080 for all the containers/tasks running under the mynginx service.  
+- Command: `docker service create --name mynginx --replicas 2 -p 8080:80 nginx`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/publish.png)  
+- Can check the ports that are listening using: `netstat -ntlp`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/netstat.png)
