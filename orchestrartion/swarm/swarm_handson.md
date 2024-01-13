@@ -43,8 +43,8 @@
     `docker swarm join --token ......`  
     - Copy the token command and run it in the worker nodes of the cluster.  
     ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/worker_node2.png)  
-  
-    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/worker_node3.png)  
+
+        ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/worker_node3.png)  
 
 - Command to list the nodes in a cluster:  
 `docker node ls`  
@@ -82,4 +82,4 @@
             `docker service scale mynginx=5`  
         
         ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/scale_up.png)  
-        ![test](./screenshots/docker_node.png)
+        
