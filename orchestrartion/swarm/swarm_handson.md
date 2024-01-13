@@ -77,9 +77,28 @@
 #### Scaling  
 - Can scale the tasks by using two ways.
     1. Using **scale** option  
-        - Syntax: `docker service scale <service-name>:<count>`  
+        - Syntax: `docker service scale <service-name>=<count>`  
+        - Using this way, we can scale the tasks to multiple services at once.  
+            `docker service scale <service-name1>=<count1> <service-name2>=<count2>`  
         - To scale up the tasks by 5, command used:  
             `docker service scale mynginx=5`  
         
         ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/scale_up.png)  
+
+        - To scale down the tasks to 2, command used:  
+            `docker service scale mynginx=2`  
         
+        ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/scale_down.png)
+        
+    2. Using **--update** option  
+        - Syntax: `docker service update --replicas <count> <service-name>`  
+        - Using this way, we scale the tasks to only one service at once.   
+        - To scale up the tasks by 5, command used:  
+            `docker service update --replicas 5 mynginx`  
+        
+        ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/update_up.png)  
+
+        - To scale down the tasks to 2, command used:  
+            `docker service update --replicas=2 mynginx`  
+
+        ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/update_down.png)  
