@@ -84,11 +84,11 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 
 - Install docker engine on all the nodes in the cluster:  [ Docker Engine ](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/swarm_handson.md#docker-engine-installation)  
 
-- Install docker compose:  
+- Install docker compose:  [ Docker Compose ](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/compose_handson.md#1-setting-complete-environment)
 
 - Forming a cluster: [ Swarm Cluster ](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/swarm_handson.md#creating-swarm-cluster)  
 
-- Creating a docker compose file:  
+- Creating a docker compose file:  [ Compose File ](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/compose_handson.md#2-creating-docker-compose-file)  
 
 <a name="stack deploy"></a>
 #### 2. Stack Deploy  
