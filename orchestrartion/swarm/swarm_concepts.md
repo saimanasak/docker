@@ -62,3 +62,11 @@
 - Locking a swarm cluster means restricting access to the cluster.  
 - Swarm cluster contains a lot of sensitive info like TLS key (which is used to encrypt) and keys which are used to encrypt or decrypt the Raft logs on disk.  
 - For security reasons or to prevent unauthorized changes locking can be used.  
+
+#### Pending State  
+- When a service is in the pending state, it means that it isn't able to start or facing issues int eh deployments.  
+- There are many reasons for this case:  
+    - Node Availability
+    - Insufficient Resources  
+    - Constraints or Placement Issues  
+    - Configuration Errors  

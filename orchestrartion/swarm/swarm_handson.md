@@ -15,6 +15,7 @@
 - [ Removing Node ](#removing-node)  
 - [ View Logs ](#view-logs)
 - [ Locking ](#locking)
+- [ Binding Volumes ](#binding-volumes)
 
 <a name="setting"></a>
 ### Setting up an Environment  
@@ -232,6 +233,39 @@ Command: `systemctl restart docker`
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/key_rotate.png)
 
 - Once the key is rotated, the updated new key which is rotated should be used a new key to unlock the cluster. Old key will not work.  
+
+<a name="binding"></a>
+### Binding Volumes  
+- Syntax to create a volume:  
+`docker volume create --name <volume-name>`  
+- Creating a service along with volume mount:  
+`docker service create --name <service-name> --mount type=<type-of-mount>,source=<volume-name>,target=<target-path> <image-name>`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/volume_create.png)  
+
+- The task is running on node swarm-3.  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/mount_service_ps.png)  
+
+- List the volumes on swarm-3 using the command:  
+`docker volume ls`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/volume_ls.png)  
+
+- Login to the container:  
+`docker container exec -it 76fcb2060b22 bash`
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/container_login.png)  
+
+- Create a file **sample.txt** in the container.  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/file_create.png)  
+
+- Check the sample.txt in the volumes directory, path: `/var/lib/docker/volumes/volume-name/_data`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/volume_file.png)  
+
+- Even after deleting the container, the data will be attached to the volumes and can be retrieved from the above path.  
 
 > [!NOTE]  
 > All the above commands that manage the cluster should be done only in the **manager** node.  
