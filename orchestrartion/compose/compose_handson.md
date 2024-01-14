@@ -36,8 +36,9 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 
 #### 3. Starting 
 - To start the application:  
-`docker-compose up -d`  
+`docker-compose -f <filename> up -d`  
 - This command reads the file, pulls the images, creates the containers, and starts them in the detached mode.    
+
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc_up.png)  
 
 #### 4. Container Status  
@@ -48,6 +49,46 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 
 #### 5. Stopping  
 - To stop the application:  
-`docker-compose down`  
+`docker-compose -f <filename> down`  
 - This stops the complete apllication and removes the containers.  
+
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc_down.png)  
+
+### In Swarm Cluster  
+#### 1. Setting Complete Environment  
+- Launching the servers: [ Nodes ](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/swarm_handson.md#setting-up-an-environment)  
+
+- Install docker engine on all the nodes in the cluster:  [ Docker Engine ](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/swarm_handson.md#docker-engine-installation)  
+
+- Install docker compose:  
+
+- Forming a cluster: [ Swarm Cluster ](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/swarm_handson.md#creating-swarm-cluster)  
+
+- Creating a docker compose file:  
+
+#### 2. Stack Deploy  
+- Syntax to deploy an application in the swarm cluster:  
+`docker stack deploy --compose-file <filename> <stack-name>`  
+- Command used to deploy a sample .yml file with the above configuartion:  
+`docker stack deploy --compose-file docker-compose.yml myfile`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/stack_deploy.png)  
+
+#### 3. Listing Tasks
+- Syntax to list all the tasks running in a specific stack:  
+`docker stack ps <stack-name>`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/stack_ps.png)  
+
+#### 4. Listing Stacks  
+- Syntax to list all the stacks present in the swarm cluster:  
+`docker stack ls`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/stack_ls.png)  
+
+#### 5. Removing Stack  
+- Syntax to remove a stack:  
+`docker stack rm <stack-name>`  
+- Can remove the stack directly even if there are any running containers.  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/stack_rm.png)  
