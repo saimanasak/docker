@@ -1,4 +1,11 @@
+- [ On Single Server ](#on-single-server)
+    - [ Setting Complete Environment ](#1-setting-complete-environment)
+    - [ Creating Docker Compose File ](#2-creating-docker-compose-file)
+
+<a name="first"></a>
 ### On Single Server  
+
+<a name="one"></a>  
 #### 1. Setting Complete Environment  
 - Launch a server on any cloud provider.  
 - In DigitalOcean, launched a server with the name myserver.  
@@ -10,8 +17,9 @@
 
 > sudo chmod +x /usr/local/bin/docker-compose #applies executable permissions
 ```
-Based on the platforms docker compose should be installed: [ Docker Compose ](https://docs.docker.com/compose/install/)
+Based on the platforms docker compose should be installed: [ Docker Compose ](https://docs.docker.com/compose/install/)  
 
+<a name="two"></a>  
 #### 2. Creating Docker Compose File  
 - Creating first docker compose file.  
 ```
@@ -34,6 +42,7 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc.png)
 
+<a name="three"></a>
 #### 3. Starting 
 - To start the application:  
 `docker-compose -f <filename> up -d`  
@@ -41,12 +50,14 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc_up.png)  
 
+<a name="four"></a>
 #### 4. Container Status  
 - To check the status of the running containers:  
 `docker-compose ps`  
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/dc_ps.png)  
 
+<a name="five"></a>
 #### 5. Stopping  
 - To stop the application:  
 `docker-compose -f <filename> down`  
@@ -54,7 +65,9 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc_down.png)  
 
-### In Swarm Cluster  
+<a name="second"></a>
+### In Swarm Cluster 
+
 #### 1. Setting Complete Environment  
 - Launching the servers: [ Nodes ](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/swarm_handson.md#setting-up-an-environment)  
 
@@ -92,3 +105,6 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 - Can remove the stack directly even if there are any running containers.  
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/stack_rm.png)  
+
+> [!NOTE]  
+> All the above commands that manage the cluster should be done only in the **manager** node.  
