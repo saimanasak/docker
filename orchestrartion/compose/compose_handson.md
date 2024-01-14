@@ -13,9 +13,9 @@
     - [ Removing Stack ](#5-removing-stack)
 
 <a name="single"></a>
-### On Single Server
+### On Single Server    
 
-<a name="setting env 1"></a>
+<a name="setting env 1"></a>  
 #### 1. Setting Complete Environment
 - Launch a server on any cloud provider.  
 - In DigitalOcean, launched a server with the name myserver.  
@@ -29,7 +29,7 @@
 ```
 Based on the platforms docker compose should be installed: [ Docker Compose ](https://docs.docker.com/compose/install/)
 
-<a name="creating dc"></a>
+<a name="creating dc"></a>  
 #### 2. Creating Docker Compose File  
 - Creating first docker compose file.  
 ```
