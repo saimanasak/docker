@@ -32,22 +32,22 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 - To validate the syntax and print the configuration:  
 `docker-compose config`  
 
-![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/first_dc.png)
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc.png)
 
 #### 3. Starting 
 - To start the application:  
 `docker-compose up -d`  
 - This command reads the file, pulls the images, creates the containers, and starts them in the detached mode.    
-![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/first_dc_up.png)  
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc_up.png)  
 
 #### 4. Container Status  
 - To check the status of the running containers:  
 `docker-compose ps`  
 
-![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/dc_ps.png)  
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/dc_ps.png)  
 
 #### 5. Stopping  
 - To stop the application:  
 `docker-compose down`  
 - This stops the complete apllication and removes the containers.  
-![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/first_dc_down.png)
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc_down.png)  
