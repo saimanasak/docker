@@ -18,7 +18,6 @@
 - [ Search ](#search)
 - [ Moving images across hosts ](#moving-images-across-hosts)
 - [ Build Cache ](#build-cache)
-- [ Networking ](#networking)
 
 <a name="Image"></a>
 #### Image  
