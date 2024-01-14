@@ -1,12 +1,22 @@
+# DOCKER COMPOSE  
 - [ On Single Server ](#on-single-server)
     - [ Setting Complete Environment ](#1-setting-complete-environment)
-    - [ Creating Docker Compose File ](#2-creating-docker-compose-file)
+    - [ Creating Docker Compose File ](#2-creating-docker-compose-file) 
+    - [ Starting ](#3-starting)
+    - [ Container Status ](#4-container-status)
+    - [ Stopping ](#5-stopping)
+- [ In Swarm Cluster ](#in-swarm-cluster)
+    - [ Setting Complete Environment ](#1-setting-complete-environment-1)
+    - [ Stack Deploy ](#2-stack-deploy)
+    - [ Listing Tasks ](#3-listing-tasks)
+    - [ Listing Stacks ](#4-listing-stacks)
+    - [ Removing Stack ](#5-removing-stack)
 
-<a name="first"></a>
-### On Single Server  
+<a name="single"></a>
+### On Single Server
 
-<a name="one"></a>  
-#### 1. Setting Complete Environment  
+<a name="setting env 1"></a>
+#### 1. Setting Complete Environment
 - Launch a server on any cloud provider.  
 - In DigitalOcean, launched a server with the name myserver.  
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/node.png)  
@@ -17,9 +27,9 @@
 
 > sudo chmod +x /usr/local/bin/docker-compose #applies executable permissions
 ```
-Based on the platforms docker compose should be installed: [ Docker Compose ](https://docs.docker.com/compose/install/)  
+Based on the platforms docker compose should be installed: [ Docker Compose ](https://docs.docker.com/compose/install/)
 
-<a name="two"></a>  
+<a name="creating dc"></a>
 #### 2. Creating Docker Compose File  
 - Creating first docker compose file.  
 ```
@@ -40,24 +50,24 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 - To validate the syntax and print the configuration:  
 `docker-compose config`  
 
-![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc.png)
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc.png)  
 
-<a name="three"></a>
+<a name="starting"></a>
 #### 3. Starting 
 - To start the application:  
 `docker-compose -f <filename> up -d`  
 - This command reads the file, pulls the images, creates the containers, and starts them in the detached mode.    
 
-![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc_up.png)  
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc_up.png)
 
-<a name="four"></a>
+<a name="status"></a>
 #### 4. Container Status  
 - To check the status of the running containers:  
 `docker-compose ps`  
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/dc_ps.png)  
 
-<a name="five"></a>
+<a name="stopping"></a>
 #### 5. Stopping  
 - To stop the application:  
 `docker-compose -f <filename> down`  
@@ -65,9 +75,10 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/first_dc_down.png)  
 
-<a name="second"></a>
+<a name="cluster"></a>
 ### In Swarm Cluster 
 
+<a name="setting env 2"></a>
 #### 1. Setting Complete Environment  
 - Launching the servers: [ Nodes ](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/swarm_handson.md#setting-up-an-environment)  
 
@@ -79,6 +90,7 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 
 - Creating a docker compose file:  
 
+<a name="stack deploy"></a>
 #### 2. Stack Deploy  
 - Syntax to deploy an application in the swarm cluster:  
 `docker stack deploy --compose-file <filename> <stack-name>`  
@@ -87,18 +99,21 @@ Based on the platforms docker compose should be installed: [ Docker Compose ](ht
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/stack_deploy.png)  
 
+<a name="listing"></a>
 #### 3. Listing Tasks
 - Syntax to list all the tasks running in a specific stack:  
 `docker stack ps <stack-name>`  
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/stack_ps.png)  
 
+<a name="listing stack"></a>
 #### 4. Listing Stacks  
 - Syntax to list all the stacks present in the swarm cluster:  
 `docker stack ls`  
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/compose/screenshots/stack_ls.png)  
 
+<a name="removing"></a>
 #### 5. Removing Stack  
 - Syntax to remove a stack:  
 `docker stack rm <stack-name>`  
