@@ -57,3 +57,8 @@
 #### Inspecting  
 - Docker Inspect provides us detailed info about Docker objects.  
 - In the docker swarm, inspect can be used to services and nodes.  
+
+#### Locking  
+- Locking a swarm cluster means restricting access to the cluster.  
+- Swarm cluster contains a lot of sensitive info like TLS key (which is used to encrypt) and keys which are used to encrypt or decrypt the Raft logs on disk.  
+- For security reasons or to prevent unauthorized changes locking can be used.  

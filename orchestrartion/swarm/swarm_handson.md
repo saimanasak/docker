@@ -1,3 +1,4 @@
+# DOCKER SWARM  
 - [ Setting up an Environment ](#setting-up-an-environment)
 - [ Docker Engine Installation ](#docker-engine-installation)
 - [ Creating Swarm Cluster ](#creating-swarm-cluster)
@@ -13,6 +14,7 @@
 - [ Removing Service ](#removing-service)  
 - [ Removing Node ](#removing-node)  
 - [ View Logs ](#view-logs)
+- [ Locking ](#locking)
 
 <a name="setting"></a>
 ### Setting up an Environment  
@@ -200,6 +202,36 @@
 `docker service logs <service-name/id>`  
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/logs.png)  
+
+<a name="locking"></a>
+### Locking  
+- Syntax to lock or unlock a swarm cluster:  
+`docker swarm update --autolock=true/false`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/locked_true.png)  
+
+- Restart docker to check if lock fucntionality is enabled (testing purpose)  
+Command: `systemctl restart docker`  
+- Error, when the list command is used as cluster is locked.    
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/error_lock.png)  
+
+- Command to unlock the cluster:  
+`docker swarm unlock`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/unlock.png)  
+
+- Command to view the key once the cluster is accessible/unlocked:  
+`docker swarm unlock-key`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/unlock_key.png)  
+
+- Command to rotate the key:  
+`docker swarm unlock-key --rotate`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/key_rotate.png)
+
+- Once the key is rotated, the updated new key which is rotated should be used a new key to unlock the cluster. Old key will not work.  
 
 > [!NOTE]  
 > All the above commands that manage the cluster should be done only in the **manager** node.  
