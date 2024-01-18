@@ -56,4 +56,14 @@
     - No ip will be configured, no access to the external networks, and no communication can be made with the other containers.  
 - Legacy approach for linking the containers:  
     `docker run -d --link <source_container>:<alias_name> --name <container_name> <image_name>`  
-    
+- Overlay Network:  
+    - Using this network, the containers present in a distributed environment can communicate with each other.  
+    - Swarm uses this network to enable the communication between the containers.  
+    - Syntax:  
+        `docker service create --name <service-name> --network <network-name> --replicas <count> <image-name>`  
+    - Secure Overlay Network:  
+        - To make the communication secure, enable encryption using **--opt encrypted** flag.  
+        - Syntax: `docker network create --opt encrypted --driver overlay <network-name>`  
+        - When encryption is enabled, Docker creates an IPSEC tunnels between all the nodes where the tasks are scheduled for the services attached to the overlay networks.  
+        - These tunnels also use the AES algorithm in the GCM mode and manager nodes automatically rotates the keys for every 12 hours.  
+        - Not supported on Windows.  
