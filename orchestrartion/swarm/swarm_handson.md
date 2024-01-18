@@ -15,7 +15,9 @@
 - [ Removing Node ](#removing-node)  
 - [ View Logs ](#view-logs)
 - [ Locking ](#locking)
-- [ Binding Volumes ](#binding-volumes)
+- [ Binding Volumes ](#binding-volumes)  
+- [ Control Service Placement ](#control-service-placement)  
+- [ Overlay Network ](#overlay-network)
 
 <a name="setting"></a>
 ### Setting up an Environment  
@@ -291,6 +293,7 @@ Command: `systemctl restart docker`
 
     ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_replicas.png)  
 
+<a name="overlay"></a>
 ### Overlay Network  
 - Syntax to create an overlay network:  
     `docker create network --driver overlay <network-name>`  
