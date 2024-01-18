@@ -265,7 +265,31 @@ Command: `systemctl restart docker`
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/volume_file.png)  
 
-- Even after deleting the container, the data will be attached to the volumes and can be retrieved from the above path.  
+- Even after deleting the container or the service, the data will be attached to the volumes and can be retrieved from the above path.  
+
+<a name="placement"></a>
+### Control Service Placement  
+- Can control the placement of the services by specifying the constraints, preferences, and other placement-related options.  
+- Syntax for creating a service:  
+    `docker service create --name <service-name> --constraint node.labels.<key>==<value> --replicas <count> <image-name>`
+- Example:  
+    - Adding the region label to a node 'swarm-2' to 'San Francisco' using: 
+        `docker node update --label-add region="sfo2" xoqmj05eoc3u4djk28b8wrw0k`  
+
+    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/label_update.png)
+
+    - Checking the region of the node using: `docker node inspect swarm-2`  
+
+    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/inspect_node_placement.png)  
+
+    - Creating a service in the nodes where the region is San Francisco using:  
+        `docker service create --name mynginx --constraint node.labels.region=="sfo2" --replicas 2 nginx`  
+
+    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_create_placement.png)  
+
+    - Checking where the created tasks are running using: `docker service ps mynginx`  
+
+    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_replicas.png)  
 
 > [!NOTE]  
 > All the above commands that manage the cluster should be done only in the **manager** node.  
