@@ -291,5 +291,25 @@ Command: `systemctl restart docker`
 
     ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_replicas.png)  
 
+### Overlay Network  
+- Syntax to create an overlay network:  
+    `docker create network --driver overlay <network-name>`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/create_overlay.png)  
+
+- Verify the network using: `docker network ls`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/network_ls.png)  
+
+- Creating a service in the overlay network using: 
+    `docker service create --name mynginx --network myoverlay --replicas 2 nginx`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_overlay.png)  
+
+- Syntax to create a secure overlay network (encrypted):  
+    `docker network create --opt encrypted --driver overlay mysecureoverlay`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/secure_overlay.png)
+
 > [!NOTE]  
 > All the above commands that manage the cluster should be done only in the **manager** node.  

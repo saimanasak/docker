@@ -70,3 +70,12 @@
     - Insufficient Resources  
     - Constraints or Placement Issues  
     - Configuration Errors  
+
+#### Control Service Placement  
+- While deploying the services, can control the placement of services using various options.  
+- Some of them are:  
+    - Node Constraints  
+    - Placement Preferences  
+    - Global and Replicated Services  
+    - Resource Constraints  
+    - Placement Constraints  

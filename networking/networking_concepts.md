@@ -8,6 +8,8 @@
     - Overlay  
     - Macvlan  
 - Default driver is Bridge.  
+- Syntax to create a custom network:   
+    `docker network create --driver <driver-type> <network-name>`  
 - Bridge Network:  
     - It allows the containers connected to the same bridge network to communicate among them and the containers will be isolated from the other containers that aren't part of bridge network.  
     - Containers communicate with each other using the ip-address.
@@ -54,3 +56,4 @@
     - No ip will be configured, no access to the external networks, and no communication can be made with the other containers.  
 - Legacy approach for linking the containers:  
     `docker run -d --link <source_container>:<alias_name> --name <container_name> <image_name>`  
+    
