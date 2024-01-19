@@ -132,3 +132,10 @@
 #### Routing Mesh  
 - It enables each node in the swarm to accept connections on the published ports for any service running in the swarm, even if there's no task running on the node.  
 - i.e., it allows a service to be accessed on any node in the swarm, regardless of where the service tasks are running.  
+
+#### Secrets  
+- Docker secrets to centrally manage this data and securely transmit it to only those containers that have access to it.  
+- Secrets are encrypted during transit and at rest in swarm.  
+- A secret is only accessible to the services which have been granted the explicit access to it, and only while those service tasks are running.  
+- Syntax to create a secret:  
+    `docker secret create <secret-name> <secret-file-name>`  

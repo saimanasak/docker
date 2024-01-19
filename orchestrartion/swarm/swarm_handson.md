@@ -18,6 +18,10 @@
 - [ Binding Volumes ](#binding-volumes)  
 - [ Control Service Placement ](#control-service-placement)  
 - [ Overlay Network ](#overlay-network)
+- [ Creating Services using Templates ](#creating-services-using-templates)
+- [ Routing Mesh ](#routing-mesh)
+- [ Secrets ](#secrets)
+- [ Leaving From Cluster ](#leaving-cluster)
 
 <a name="setting"></a>
 ### Setting up an Environment  
@@ -314,6 +318,7 @@ Command: `systemctl restart docker`
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/secure_overlay.png)  
 
+<a name="template"></a>
 ### Creating Services using Templates  
 - Syntax to create a service using template:  
     `docker service create --name <service-name> --<flag>="{{.placeholder}}-{{.another-key}} <image-name>`  
@@ -326,6 +331,7 @@ Command: `systemctl restart docker`
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/verify_template.png)  
 
+<a name="mesh"></a>
 ### Routing Mesh  
 - Create a service with 2 replicas on a port 8080:  
     `docker service create --name mynginx --publish published=8080,target=80 --replicas 2 nginx`  
@@ -336,6 +342,35 @@ Command: `systemctl restart docker`
 - Try to access the service task for all the nodes, from the task which is running on swarm-1 we can access the service on swarm-3 node even though any task isn't running on it.  
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/verify_mesh.png)  
+
+<a name="secrets"></a>
+### Secrets  
+- Syntax to create a secret: `docker secret create <secret-name> <secret-file-name>`  
+- Command to create a secret from a file 'secret.txt':  
+    `docker secret create mysecret secret.txt`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/secret_create.png)  
+
+- When a secret is inspected nothing is displayed about the secret as it was encrypted:  
+    `docker secret inspect mysecret`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/inspect_secret.png)  
+
+- Command to create a service using the secret:  
+    `docker service create --name mynginx --secret mysecret --replicas 2 nginx`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/secret_service.png)  
+
+- As the containers are running on swarm-2 and swarm-3 nodes, trying to access the secrets from the container from the node swarm-3:  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/access_secret.png)
+
+<a name="leave"></a>
+### Leaving From Cluster   
+- Syntax for a node to leave the swarm cluster(run the command in the node that is set to leave the cluster):  
+    `docker swarm leave`
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/swarm_leave.png)  
 
 > [!NOTE]  
 > All the above commands that manage the cluster should be done only in the **manager** node.  
