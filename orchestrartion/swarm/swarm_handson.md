@@ -324,7 +324,18 @@ Command: `systemctl restart docker`
 
 - Verify the hostname of the container/task:  
 
-![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/verify_template.png)
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/verify_template.png)  
+
+### Routing Mesh  
+- Create a service with 2 replicas on a port 8080:  
+    `docker service create --name mynginx --publish published=8080,target=80 --replicas 2 nginx`  
+    - Here, the mynginx service tasks are running on two nodes i.e, swarm-1 and swarm-2.  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_create_mesh.png)  
+
+- Try to access the service task for all the nodes, from the task which is running on swarm-1 we can access the service on swarm-3 node even though any task isn't running on it.  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/verify_mesh.png)  
 
 > [!NOTE]  
 > All the above commands that manage the cluster should be done only in the **manager** node.  

@@ -128,3 +128,7 @@
     - A **N** manager cluster tolerates the loss of atmost **(N-1)/2** managers.  
 - Syntax to recover the nodes from losing the Quorum:  
     `docker swarm init --force-new-cluster --advertise-addr <ip-address>`  
+
+#### Routing Mesh  
+- It enables each node in the swarm to accept connections on the published ports for any service running in the swarm, even if there's no task running on the node.  
+- i.e., it allows a service to be accessed on any node in the swarm, regardless of where the service tasks are running.  
