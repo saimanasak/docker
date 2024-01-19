@@ -21,7 +21,7 @@
 - [ Creating Services using Templates ](#creating-services-using-templates)
 - [ Routing Mesh ](#routing-mesh)
 - [ Secrets ](#secrets)
-- [ Leaving From Cluster ](#leaving-cluster)
+- [ Leaving From Cluster ](#leaving-from-cluster)
 
 <a name="setting"></a>
 ### Setting up an Environment  
