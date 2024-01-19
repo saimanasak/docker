@@ -79,3 +79,52 @@
     - Global and Replicated Services  
     - Resource Constraints  
     - Placement Constraints  
+
+#### Creating Service using Templates  
+- Syntax:  
+    `docker service create --name <service-name> --<flag>="{{.placeholder}}-{{.another-key}} <image-name>`  
+- Three supported flags:  
+    - --hostname  
+    - --mount  
+    - --env  
+- Valid Placeholders:  
+    - Service.ID  
+    - .Service.Name  
+    - .Service.Labels  
+    - .Node.ID  
+    - .Node.Hostname  
+    - .Task.ID  
+    - .Task.Name  
+    - .Task.Slot  
+
+#### Split Brain Problem  
+- In a distributed system, where the nodes are divided into separate groups, and each group believes it is the only active part of the system.  
+- It occurs when nodes lose connectivity but continue to operate independently making decisions without the awareness of the state of other nodes.  
+- Leads to inconsistencies, conflicts, and potential data corruption.  
+- Network partitions, hardware failures, or software issues can lead to communication breakdowns between nodes, and then the nodes operate independently.  
+
+#### Quorum  
+- Used to ensure the reliablity and consistency of decisions made by a group of nodes or replicas.  
+- It refers to the minimum number of nodes that should agree on a particular decision or action for it to be considered valid.  
+- Election process.  
+- We should maintain odd no.of nodes within the cluster.  
+    - Cluster Size: No.of nodes in a cluster.  
+    - Majority: Max no.of nodes needed to be available to maintain the cluster.  
+    - Fault Tolerance: No.of that can be down in the cluster.  
+
+| Cluster Size | Majority | Fault Tolerance |  
+|--------------|----------|-----------------|  
+| 1 | 0 | 0 |  
+| 2 | 2 | 0 |  
+| 3 | 2 | 1 |  
+| 4 | 3 | 1 |  
+| 5 | 3 | 2 |  
+| 6 | 4 | 2 |  
+| 7 | 4 | 3 |  
+
+- High Availability of Manager nodes in a swarm cluster:  
+    - It is good to have odd number of nodes in a cluster.  
+    - Using a raft implementation, the managers maintain a consistent internal state of the entire swarm and all the services that are running on it.  
+    - A **N** manager cluster tolerates the loss of atmost **(N-1)/2** managers.  
+- Syntax to recover the nodes from losing the Quorum:  
+    `docker swarm init --force-new-cluster --advertise-addr <ip-address>`  

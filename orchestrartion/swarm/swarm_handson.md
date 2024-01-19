@@ -312,7 +312,19 @@ Command: `systemctl restart docker`
 - Syntax to create a secure overlay network (encrypted):  
     `docker network create --opt encrypted --driver overlay mysecureoverlay`  
 
-![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/secure_overlay.png)
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/secure_overlay.png)  
+
+### Creating Services using Templates  
+- Syntax to create a service using template:  
+    `docker service create --name <service-name> --<flag>="{{.placeholder}}-{{.another-key}} <image-name>`  
+- Command to create service using the hostname:  
+    `docker service create --name mynginx --hostname="{{.Node.Hostname}}-{{.Service.Name}}" nginx`    
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/service_template.png)  
+
+- Verify the hostname of the container/task:  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/verify_template.png)
 
 > [!NOTE]  
 > All the above commands that manage the cluster should be done only in the **manager** node.  
