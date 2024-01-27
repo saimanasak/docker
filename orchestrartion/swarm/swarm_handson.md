@@ -21,7 +21,8 @@
 - [ Creating Services using Templates ](#creating-services-using-templates)
 - [ Routing Mesh ](#routing-mesh)
 - [ Secrets ](#secrets)
-- [ Leaving From Cluster ](#leaving-from-cluster)
+- [ Leaving From Cluster ](#leaving-from-cluster)  
+- [ MTLS ](#mtls)
 
 <a name="setting"></a>
 ### Setting up an Environment  
@@ -371,6 +372,49 @@ Command: `systemctl restart docker`
     `docker swarm leave`
 
 ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/swarm_leave.png)  
+
+<a name="mtls"></a>
+### MTLS  
+- All the certificates are stored in the path:  `/var/lib/docker/swarm/certificates`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/mtls_certificates.png)
+
+- Create a swarm cluster with one manager and one worker node.  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/mtls_swarm_nodes.png)  
+
+- Remove the worker node from the cluster.  
+    - Worker node: `docker swarm leave`  
+
+    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/mtls_swarm_leave.png)  
+
+    - Manager: `docker node rm <node-name/id>`  
+
+    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/mtls_swarm_rm.png)  
+
+    - Nodes:  
+
+    ![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/mtls_rm_nodes.png)
+
+- Now, generate a new certificate or rotate the certificate on the manager node using:  `docker swarm ca --rotate`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/mtls_rotate.png)  
+
+- When we try to join again the swarm using the old worker token, there will be a error... bcz the new certificate has been generated so the tokens will also change accordingly.  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/mtls_swarm_join_again.png)  
+
+- Join with a new generated worker token.  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/mtls_swarm_join_new.png)  
+
+- Calculate the checksum of the certificate on the worker node using: `md5sum <file-name>`  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/mtls_md_before.png)  
+
+- The above values will be changed again when a new certificate is generated as above:  
+
+![screenshot](https://github.com/saimanasak/docker/blob/main/orchestrartion/swarm/screenshots/mtls_md_after.png)  
 
 > [!NOTE]  
 > All the above commands that manage the cluster should be done only in the **manager** node.  

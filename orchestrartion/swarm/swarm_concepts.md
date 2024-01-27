@@ -139,3 +139,17 @@
 - A secret is only accessible to the services which have been granted the explicit access to it, and only while those service tasks are running.  
 - Syntax to create a secret:  
     `docker secret create <secret-name> <secret-file-name>`  
+
+#### MTLS
+- Mutual Transport Layer Security is a security mechanism where both server and the client in a communication exchange authenticate each other.  
+- It is used to authenticate, authorize, and encrypt the communication with the other nodes in a swarm.  
+- All the certificates are stored in the path:  `/var/lib/docker/swarm/certificates`  
+- By default, manager node generates a new root Certificate Authority (CA) along with a key pair, which are used to secure communications with the other nodes that join the swarm.  
+- Can give own externally generated root CA, using `--external-ca` flag along with the swarm init command.  
+- Whenever a node joins the swarm, the manager provides a certificate to the node.  
+- There will be a secure communication among the managers, and the workers using the digital certificates.  
+- Generally, manager generates two tokens - one for manager and the other for the worker.  
+- Each token includes the digest of the root CA's certificate and a randomly generated secret.  
+- Whenever a node joins a swarm, the node which is joining uses the digest to validate the root CA certificate from the remote manager.  
+- Can generate a new certificate using - `docker swarm ca --rotate`  
+    - The above one is generated cross-signed certificate signed by the previous old CA.  
