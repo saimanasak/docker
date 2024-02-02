@@ -153,3 +153,9 @@
 - Whenever a node joins a swarm, the node which is joining uses the digest to validate the root CA certificate from the remote manager.  
 - Can generate a new certificate using - `docker swarm ca --rotate`  
     - The above one is generated cross-signed certificate signed by the previous old CA.  
+
+#### Docker Content Trust  
+- It is a security feature that provides a way to verify the integrity and authenticity of the images.  
+- Helps to ensure that the images we use are from a trusted source and haven't been tampered.  
+- Command to enable Docker Content Trust:  
+    `export DOCKER_CONTENT_TRUST=1`  
